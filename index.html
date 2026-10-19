@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shashikant Nirala — Developer</title>
+  <meta name="description" content="Portfolio of Shashikant Nirala — software developer open to internships." />
+  <meta name="theme-color" content="#0e0d0b" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230e0d0b'/><circle cx='16' cy='16' r='7' fill='%23ff4d1c'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <span class="loader__label">Loading</span>
+    <span class="loader__count" id="loaderCount">000</span>
+  </div>
+
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor"><span class="cursor__label"></span></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="preview" id="preview" aria-hidden="true"><div class="preview__art"></div><span class="preview__tag"></span></div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" data-cursor="Top">SN<sup>©</sup></a>
+    <nav class="nav__links">
+      <a href="#about" data-magnetic>About</a>
+      <a href="#work" data-magnetic>Work</a>
+      <a href="#path" data-magnetic>Path</a>
+      <a href="#contact" data-magnetic>Contact</a>
+    </nav>
+    <span class="nav__clock" id="clock">--:--</span>
+  </header>
+
+  <div class="dock" id="dock" role="group" aria-label="Experience controls">
+    <button type="button" class="dock__btn" id="motionBtn" aria-pressed="false" data-cursor="Motion">
+      <span class="dock__glyph" id="motionGlyph" aria-hidden="true"></span><span class="mono" id="motionLabel">Motion on</span>
+    </button>
+    <button type="button" class="dock__btn" id="soundBtn" aria-pressed="false" data-cursor="Sound">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="mono" id="soundLabel">Sound off</span>
+    </button>
+  </div>
+
+  <main id="top">
+    <section class="hero" data-pose="0">
+      <p class="hero__status mono"><i class="dot"></i><span id="status"></span></p>
+      <h1 class="hero__title" id="heroTitle"></h1>
+      <div class="hero__foot">
+        <p class="hero__intro" id="intro"></p>
+        <a href="#work" class="scrollcue mono" data-cursor="Scroll">Scroll<span></span></a>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+    <section class="about" id="about" data-pose="1">
+      <p class="eyebrow mono">(01) About</p>
+      <div class="about__grid">
+        <div class="about__text" id="aboutText"></div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+      <ul class="skills" id="skills"></ul>
+    </section>
+
+    <section class="work" id="work" data-pose="2">
+      <p class="eyebrow mono">(02) Selected work</p>
+      <ul class="projects" id="projects"></ul>
+    </section>
+
+    <section class="path" id="path" data-pose="3">
+      <p class="eyebrow mono">(03) Path</p>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <section class="contact" id="contact" data-pose="4">
+      <p class="eyebrow mono">(04) Contact</p>
+      <h2 class="contact__title">Let’s build<br /><em>something</em> <span class="u">together.</span></h2>
+
+      <div class="contact__grid">
+        <aside class="contact__side">
+          <p class="contact__lede" id="contactLede"></p>
+          <ul class="channels" id="channels"></ul>
+          <ol class="steps" id="steps"></ol>
+          <div class="contact__row">
+            <a class="btn" id="resume" data-magnetic data-cursor="PDF" data-icon-host></a>
+          </div>
+        </aside>
+
+        <form class="form" id="form" novalidate>
+          <div class="form__head">
+            <h3>Send a message</h3>
+            <p class="mono" id="formNote"></p>
+          </div>
+
+          <fieldset class="field">
+            <legend>I’m reaching out about</legend>
+            <div class="chips" id="topics"></div>
+          </fieldset>
+
+          <div class="field__pair">
+            <label class="field"><span>Your name <b>*</b></span>
+              <input type="text" name="name" autocomplete="name" placeholder="Jane Doe" required />
+              <small class="err" aria-live="polite"></small></label>
+            <label class="field"><span>Email <b>*</b></span>
+              <input type="email" name="email" autocomplete="email" placeholder="jane@company.com" required />
+              <small class="err" aria-live="polite"></small></label>
+          </div>
+
+          <label class="field"><span>Message <b>*</b></span>
+            <textarea name="message" rows="5" placeholder="A few lines about the role, project or idea…" required minlength="10"></textarea>
+            <small class="err" aria-live="polite"></small></label>
+
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="form__foot">
+            <button class="btn btn--send" type="submit" data-magnetic data-cursor="Send" data-icon-host><span id="sendLabel">Send message</span></button>
+            <p class="form__status mono" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+
+      <footer class="footer mono"><span id="year"></span><span>Designed &amp; coded by hand.</span><span id="toTop" data-cursor="Top">Back to top ↑</span></footer>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
